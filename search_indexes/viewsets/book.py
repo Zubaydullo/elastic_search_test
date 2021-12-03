@@ -131,9 +131,9 @@ class BookDocumentView(BaseDocumentViewSet):
     ordering_fields = {
         # "id": "id",
         "title": "title.raw",
-        "price": "price.id",
-        "state": "state.id",
-        # "publication_date": "publication_date",
+        "price": "price.raw",
+        "state": "state.raw",
+        "publication_date": "publication_date.raw",
     }
     # Specify default ordering
     ordering = (
