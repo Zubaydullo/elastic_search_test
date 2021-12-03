@@ -1,7 +1,6 @@
 from books.models import Book
 from django.conf import settings
 from django_elasticsearch_dsl import Document, Index, fields
-from django_elasticsearch_dsl_drf.compat import KeywordField, StringField
 from elasticsearch_dsl import analyzer
 
 # Name of the Elasticsearch index
@@ -24,48 +23,48 @@ class BookDocument(Document):
 
     id = fields.IntegerField(attr="id")
 
-    title = StringField(
+    title = fields.StringField(
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword"),
+            "raw": fields.StringField(analyzer="keyword"),
         },
     )
 
-    description = StringField(
+    description = fields.StringField(
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword"),
+            "raw": fields.StringField(analyzer="keyword"),
         },
     )
 
-    summary = StringField(
+    summary = fields.StringField(
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword"),
+            "raw": fields.StringField(analyzer="keyword"),
         },
     )
 
-    publisher = StringField(
+    publisher = fields.StringField(
         attr="publisher_indexing",
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword"),
+            "raw": fields.StringField(analyzer="keyword"),
         },
     )
 
-    publication_date = StringField()
+    publication_date = fields.DateField()
 
-    state = StringField(
+    state = fields.StringField(
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword"),
+            "raw": fields.StringField(analyzer="keyword"),
         },
     )
 
-    isbn = StringField(
+    isbn = fields.StringField(
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword"),
+            "raw": fields.StringField(analyzer="keyword"),
         },
     )
 
@@ -75,11 +74,11 @@ class BookDocument(Document):
 
     stock_count = fields.IntegerField()
 
-    tags = StringField(
+    tags = fields.StringField(
         attr="tags_indexing",
         analyzer=html_strip,
         fields={
-            "raw": StringField(analyzer="keyword", multi=True),
+            "raw": fields.StringField(analyzer="keyword", multi=True),
             "suggest": fields.CompletionField(multi=True),
         },
         multi=True,
