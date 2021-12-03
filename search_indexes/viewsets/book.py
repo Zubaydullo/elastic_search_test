@@ -19,7 +19,6 @@ from django_elasticsearch_dsl_drf.filter_backends import (
 )
 from django_elasticsearch_dsl_drf.pagination import PageNumberPagination
 from django_elasticsearch_dsl_drf.viewsets import BaseDocumentViewSet
-
 from search_indexes.documents.book import BookDocument
 from search_indexes.serializers.book import BookDocumentSerializer
 
@@ -130,11 +129,11 @@ class BookDocumentView(BaseDocumentViewSet):
     }
     # Define ordering fields
     ordering_fields = {
-        "id": "id",
+        # "id": "id",
         "title": "title.raw",
-        "price": "price.raw",
-        "state": "state.raw",
-        "publication_date": "publication_date",
+        "price": "price.id",
+        "state": "state.id",
+        # "publication_date": "publication_date",
     }
     # Specify default ordering
     ordering = (
