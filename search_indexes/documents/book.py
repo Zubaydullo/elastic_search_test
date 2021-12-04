@@ -2,7 +2,6 @@ from books.models import Book
 from django.conf import settings
 from django_elasticsearch_dsl import Document, Index, fields
 from django_elasticsearch_dsl_drf.compat import KeywordField, StringField
-
 from elasticsearch_dsl import analyzer
 
 # Name of the Elasticsearch index
@@ -14,7 +13,7 @@ INDEX.settings(number_of_shards=1, number_of_replicas=1)
 html_strip = analyzer(
     "html_strip",
     tokenizer="standard",
-    filter=["standard", "lowercase", "stop", "snowball"],
+    filter=["lowercase", "stop", "snowball"],
     char_filter=["html_strip"],
 )
 
