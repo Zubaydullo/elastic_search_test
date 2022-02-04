@@ -1,1 +1,1 @@
-# elastic_search_test
+# test project for elasticsearch
